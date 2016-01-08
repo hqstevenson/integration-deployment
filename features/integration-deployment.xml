@@ -1,0 +1,67 @@
+<features name="integration-deployment" xmlns="http://karaf.apache.org/xmlns/features/v1.3.0" >
+    <!--
+        Version 1.0.0
+     -->
+    <!-- Affiliates -->
+    <feature name="CP_EPICadINGNMED_ip" version="1.0.0">
+        <feature version="1.0.0" dependency="true">EPICadINGNMED_ip</feature>
+        <feature version="1.0.0" dependency="true">builders</feature>
+        <bundle>mvn:com.pronoia.camel.deployment.affiliates.CP/CP_EPICadINGNMED_ip/1.0.0</bundle>
+    </feature>
+    <feature name="XX_EPICadINGNMED_ip" version="1.0.0">
+        <feature version="1.0.0" dependency="true">EPICadINGNMED_ip</feature>
+        <feature version="1.0.0" dependency="true">builders</feature>
+        <bundle>mvn:com.pronoia.camel.deployment.affiliates.XX/XX_EPICadINGNMED_ip/1.0.0</bundle>
+    </feature>
+
+    <!-- Integrations -->
+    <feature name="EPICadINGNMED_ip" version="1.0.0" >
+        <feature version="1.0.0" dependency="true">interfaces</feature>
+        <bundle>mvn:com.pronoia.camel.deployment.integrations/EPICadINGNMED_ip/1.0.0</bundle>
+    </feature>
+
+    <!-- Builders -->
+    <feature name="builders" version="1.0.0" >
+        <feature version="1.0.0" dependency="true">interfaces</feature>
+        <bundle>mvn:com.pronoia.camel.deployment/builders/1.0.0</bundle>
+    </feature>
+
+    <!-- Interfaces -->
+    <feature name="interfaces" version="1.0.0" >
+        <bundle>mvn:com.pronoia.camel.deployment/interfaces/1.0.0</bundle>
+        <bundle dependency="true">mvn:org.apache.commons/commons-lang3/3.4</bundle>
+    </feature>
+
+    <!--
+        Version 2.0.0
+     -->
+    <!-- Affiliates -->
+    <feature name="CP_EPICadINGNMED_ip" version="2.0.0">
+        <feature version="2.0.0" dependency="true">EPICadINGNMED_ip</feature>
+        <feature version="2.0.0" dependency="true">builders</feature>
+        <bundle>mvn:com.pronoia.camel.deployment.affiliates.CP/CP_EPICadINGNMED_ip/2.0.0</bundle>
+    </feature>
+    <feature name="XX_EPICadINGNMED_ip" version="2.0.0">
+        <feature version="2.0.0" dependency="true">EPICadINGNMED_ip</feature>
+        <feature version="2.0.0" dependency="true">builders</feature>
+        <bundle>mvn:com.pronoia.camel.deployment.affiliates.XX/XX_EPICadINGNMED_ip/2.0.0</bundle>
+    </feature>
+
+    <!-- Integrations -->
+    <feature name="EPICadINGNMED_ip" version="2.0.0" >
+        <feature version="2.0.0" dependency="true">interfaces</feature>
+        <bundle>mvn:com.pronoia.camel.deployment.integrations/EPICadINGNMED_ip/2.0.0</bundle>
+    </feature>
+
+    <!-- Builders -->
+    <feature name="builders" version="2.0.0" >
+        <feature version="2.0.0" dependency="true">interfaces</feature>
+        <bundle>mvn:com.pronoia.camel.deployment/builders/2.0.0</bundle>
+    </feature>
+
+    <!-- Interfaces -->
+    <feature name="interfaces" version="2.0.0" >
+        <bundle>mvn:com.pronoia.camel.deployment/interfaces/2.0.0</bundle>
+        <bundle dependency="true">mvn:org.apache.commons/commons-lang3/3.4</bundle>
+    </feature>
+</features>

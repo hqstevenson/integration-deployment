@@ -11,13 +11,13 @@
     </parent>
 
     <groupId>com.pronoia.camel.deployment.affiliates</groupId>
-    <artifactId>CP</artifactId>
+    <artifactId>XX</artifactId>
     <packaging>pom</packaging>
 
-    <description>Integration Deployment Prototype :: Affiliates :: CP</description>
+    <description>Integration Deployment Prototype :: Affiliates :: XX</description>
 
     <modules>
-        <module>CP_EPICadINGNMED_ip</module>
+        <module>XX_EPICadINGNMED_ip</module>
     </modules>
 
 </project>

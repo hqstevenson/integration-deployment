@@ -1,5 +1,6 @@
 package com.pronoia.camel.deployment.interfaces;
 
+import org.apache.camel.Body;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +13,7 @@ import java.text.MessageFormat;
  * @author KilburB
  */
 public abstract class Filter {
-
+  protected Logger log = LoggerFactory.getLogger(this.getClass());
   /**
    * Audit format for standard disqualified statements.
    */
@@ -63,5 +64,7 @@ public abstract class Filter {
 
     return failureMessage;
   }
+
+  public abstract boolean qualify(@Body String body);
 
 }

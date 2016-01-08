@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0"
+           xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:camel="http://camel.apache.org/schema/blueprint"
+           xsi:schemaLocation="
+               http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+               http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd"
+        >
+
+
+    <bean id="xx-route-builder" class="com.pronoia.camel.deployment.builder.TranslationBuilder" >
+        <property name="affiliate" value="XX v2.0.0" />
+        <property name="source" value="timer://XX?period=5000"/>
+        <property name="target" value="log:complete?level=INFO" />
+        <property name="body" value="XX_EPICadINGNMED_ip" />
+        <property name="qualifier" value="true" />
+        <property name="filter" >
+            <bean class="com.pronoia.camel.deployment.integrations.impl.EPICadINGNMED_ipFilter" />
+        </property>
+        <property name="translation" >
+            <bean class="com.pronoia.camel.deployment.integrations.impl.EPICadINGNMED_ipTranslation" />
+        </property>
+    </bean>
+
+    <camelContext id="XX_EPICadINGNMED_ip" trace="false" xmlns="http://camel.apache.org/schema/blueprint" >
+        <routeBuilder ref="xx-route-builder" />
+    </camelContext>
+
+</blueprint>
