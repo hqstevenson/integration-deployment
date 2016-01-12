@@ -7,7 +7,7 @@ import org.apache.camel.Body;
 public class EPICadINGNMED_ipFilter extends Filter {
     @Override
     public boolean qualify(@Body String body) {
-        log.info( "(Filter v2.0.0) Processing body: {}", body);
+        log.info( "(Filter v1.0.0) Processing body: {}", body);
         return true;
     }
 }

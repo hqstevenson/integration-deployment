@@ -22,7 +22,7 @@ public class TranslationBuilder extends RouteBuilder {
     public void configure() throws Exception {
 
         from( source )
-                .log( "(Builder v2.0.0 - Affiliate " + affiliate +") Processing body " )
+                .log( "(Builder v1.0.0 - Affiliate " + affiliate +") Processing body " )
                 .filter( not( simple(qualifier)) )
                     .log( "Message disqualified")
                     .stop()
