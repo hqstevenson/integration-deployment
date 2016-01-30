@@ -12,12 +12,14 @@
     <description>Integration Deployment Prototype</description>
 
     <properties>
-        <camel-version>2.16.1</camel-version>
-        <activemq-version>5.12.1</activemq-version>
+        <camel-version>2.16.2</camel-version>
+        <activemq-version>5.12.2</activemq-version>
+        <slf4j-version>1.7.13</slf4j-version>
     </properties>
 
     <modules>
         <module>interfaces</module>
+        <module>services</module>
         <module>builders</module>
         <module>integrations</module>
         <module>affiliates</module>

@@ -12,10 +12,16 @@ import org.apache.camel.Producer;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.junit4.CamelTestSupport;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 public class TranslationBuilderTest extends CamelTestSupport{
+
+    final String filterBeanId = "filter-bean";
+    final String translationBeanId = "translation-bean";
 
     @EndpointInject( uri = "direct://source")
     ProducerTemplate source;
@@ -26,16 +32,14 @@ public class TranslationBuilderTest extends CamelTestSupport{
     Filter filter;
     Translation translation;
 
-    @org.junit.Before
-    public void setUp() throws Exception {
-        filter = new DummyFilter();
-        translation = new DummyTranslation();
-        super.setUp();
-    }
+    @Override
+    protected JndiRegistry createRegistry() throws Exception {
+        JndiRegistry registry = super.createRegistry();
 
-    @org.junit.After
-    public void tearDown() throws Exception {
-        super.tearDown();
+        registry.bind( filterBeanId, new DummyFilter());
+        registry.bind( translationBeanId, new DummyTranslation());
+
+        return registry;
     }
 
     @Override
@@ -43,8 +47,8 @@ public class TranslationBuilderTest extends CamelTestSupport{
         TranslationBuilder builder = new TranslationBuilder();
 
         builder.setQualifier( "${body} not contains 'disqualify'" );
-        builder.setFilter( filter );
-        builder.setTranslation( translation );
+        builder.setFilter( filterBeanId );
+        builder.setTranslation( translationBeanId );
 
         return builder;
     }

@@ -1,9 +1,11 @@
 package com.pronoia.camel.deployment.builder;
 
-import com.pronoia.camel.deployment.interfaces.Filter;
-import com.pronoia.camel.deployment.interfaces.Translation;
-
+import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.processor.aggregate.AggregationStrategy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import static org.apache.camel.builder.PredicateBuilder.not;
 
 public class TranslationBuilder extends RouteBuilder {
@@ -15,8 +17,8 @@ public class TranslationBuilder extends RouteBuilder {
     String body = "Default Body";
 
     String qualifier;
-    Filter filter;
-    Translation translation;
+    String filterBeanId;
+    String translationBeanId;
 
     @Override
     public void configure() throws Exception {
@@ -28,12 +30,12 @@ public class TranslationBuilder extends RouteBuilder {
                     .stop()
                 .end()
                 .log( "Qualifier Passed - calling filter")
-                .filter( not(method(filter, "qualify")) )
-                    .log( "Message Filtered")
+                .filter( not(method(filterBeanId, "qualify")))
+                    .log( "Message Filtered by bean id call")
                     .stop()
                 .end()
                 .log( "Filter Passed - Calling Translation bean")
-                .bean( translation, "translate" )
+                .toF( "bean://%s?method=translate", translationBeanId )
                 .log( "Complete")
                 .to( target )
         ;
@@ -79,19 +81,19 @@ public class TranslationBuilder extends RouteBuilder {
         this.qualifier = qualifier;
     }
 
-    public Filter getFilter() {
-        return filter;
+    public String getFilter() {
+        return filterBeanId;
     }
 
-    public void setFilter(Filter filter) {
-        this.filter = filter;
+    public void setFilter(String filterBeanId) {
+        this.filterBeanId = filterBeanId;
     }
 
-    public Translation getTranslation() {
-        return translation;
+    public String getTranslation() {
+        return translationBeanId;
     }
 
-    public void setTranslation(Translation translation) {
-        this.translation = translation;
+    public void setTranslation(String translationBeanId) {
+        this.translationBeanId = translationBeanId;
     }
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+           xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:camel="http://camel.apache.org/schema/blueprint"
+           xsi:schemaLocation="
+               http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+               http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd"
+        >
+
+    <cm:property-placeholder persistent-id="EPICadINGNMED_ip" update-strategy="reload" >
+        <cm:default-properties>
+            <cm:property name="integration" value="EPICadINGNMED_ip" />
+            <cm:property name="qualifier" value="true" />
+        </cm:default-properties>
+    </cm:property-placeholder>
+
+    <bean id="shutdown" class="org.apache.camel.impl.DefaultShutdownStrategy">
+        <property name="timeout" value="30"/>
+    </bean>
+
+    <bean id="reference-listener" class="com.pronoia.osgi.blueprint.EPICadINGNMEDipServiceReferenceListener">
+        <property name="bundle" ref="blueprintBundle"/>
+        <property name="bundleContext" ref="blueprintBundleContext"/>
+        <property name="blueprintContainer" ref="blueprintContainer"/>
+    </bean>
+
+
+    <service interface="org.osgi.service.blueprint.container.BlueprintListener">
+        <bean class="com.pronoia.osgi.blueprint.EPICadINGNMEDipBlueprintEventListener">
+            <property name="bundle" ref="blueprintBundle"/>
+            <property name="bundleContext" ref="blueprintBundleContext"/>
+            <property name="blueprintContainer" ref="blueprintContainer"/>
+        </bean>
+    </service>
+
+    <!-- This works
+    <bean id="filter-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadINGNMED_ipFilter" scope="prototype">
+        <property name="service">
+            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=one" timeout="2000"/>
+        </property>
+    </bean>
+
+    <bean id="translation-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadINGNMED_ipTranslation" scope="prototype">
+        <property name="service">
+            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=two" timeout="2000"/>
+        </property>
+    </bean>
+
+    <bean id="route-builder" class="com.pronoia.camel.deployment.impl.builder.EPICadINGNMEDTranslationBuilder" scope="prototype">
+        <property name="affiliate" value="${integration}" />
+        <property name="source" value="timer://EPICadINGNMED_ip?period=5000"/>
+        <property name="target" value="log:complete?level=INFO" />
+        <property name="body" value="CP_EPICadINGNMED_ip" />
+        <property name="qualifier" value="true" />
+        <property name="filter" value="filter-bean"/>
+        <property name="translation" value="translation-bean" />
+        <property name="dummyFilter" ref="filter-bean" />
+    </bean>
+
+    <camelContext id="EPICadINGNMED_ip" trace="false" xmlns="http://camel.apache.org/schema/blueprint" >
+        <routeBuilder ref="route-builder" />
+    </camelContext>
+    -->
+
+</blueprint>

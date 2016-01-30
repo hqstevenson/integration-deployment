@@ -16,19 +16,30 @@
         </cm:default-properties>
     </cm:property-placeholder>
 
+    <bean id="cp-filter-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadINGNMED_ipFilter" scope="prototype">
+        <property name="service">
+            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=one" timeout="2000">
+                <reference-listener ref="reference-listener" bind-method="onBind" unbind-method="onUnbind" />
+            </reference>
+        </property>
+    </bean>
+
+    <bean id="cp-translation-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadINGNMED_ipTranslation" scope="prototype">
+        <property name="service">
+            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=two" timeout="2000">
+                <!-- reference-listener ref="reference-listener" bind-method="onBind" unbind-method="onUnbind" / -->
+            </reference>
+        </property>
+    </bean>
 
     <bean id="cp-route-builder" class="com.pronoia.camel.deployment.builder.TranslationBuilder" >
         <property name="affiliate" value="$CP{affiliate}" />
         <property name="source" value="timer://CP?period=5000"/>
         <property name="target" value="log:complete?level=INFO" />
         <property name="body" value="CP_EPICadINGNMED_ip" />
-        <property name="qualifier" value="true" />
-        <property name="filter" >
-            <bean class="com.pronoia.camel.deployment.integrations.impl.EPICadINGNMED_ipFilter" />
-        </property>
-        <property name="translation" >
-            <bean class="com.pronoia.camel.deployment.integrations.impl.EPICadINGNMED_ipTranslation" />
-        </property>
+        <property name="qualifier" value="${qualifier}" />
+        <property name="filter" value="cp-filter-bean"/>
+        <property name="translation" value="cp-translation-bean" />
     </bean>
 
     <camelContext id="CP_EPICadINGNMED_ip" trace="false" xmlns="http://camel.apache.org/schema/blueprint" >

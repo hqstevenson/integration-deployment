@@ -20,12 +20,17 @@
         <dependency>
             <groupId>com.pronoia.camel.deployment</groupId>
             <artifactId>builders</artifactId>
-            <version>${project.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>com.pronoia.camel.deployment.integrations</groupId>
             <artifactId>EPICadINGNMED_ip</artifactId>
-            <version>${project.version}</version>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pronoia.camel.deployment.service</groupId>
+            <artifactId>blueprint-event-listener</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
 
         <dependency>
@@ -54,7 +59,14 @@
                         <Bundle-Symbolicname>${project.artifactId}</Bundle-Symbolicname>
                         <Bundle-Blueprint>OSGI-INF/blueprint/*.xml</Bundle-Blueprint>
                         <Fragment-Host>EPICadINGNMED_ip;bundle-version=1.0.0.SNAPSHOT</Fragment-Host>
-                        <Import-Package>com.pronoia.camel.deployment.builder,*</Import-Package>
+                        <Import-Package>
+                            org.osgi.service.blueprint,
+                            org.osgi.service.blueprint.container,
+                            org.apache.camel.impl,
+                            com.pronoia.camel.deployment.builder,
+                            com.pronoia.camel.deployment.services,
+                            *
+                        </Import-Package>
                     </instructions>
                 </configuration>
             </plugin>

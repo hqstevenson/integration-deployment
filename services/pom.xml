@@ -11,13 +11,15 @@
     </parent>
 
     <groupId>com.pronoia.camel.deployment</groupId>
-    <artifactId>integrations</artifactId>
+    <artifactId>services</artifactId>
     <packaging>pom</packaging>
 
-    <description>Integration Deployment Prototype :: Integrations</description>
+    <description>Integration Deployment Prototype :: Services</description>
 
     <modules>
-        <module>EPICadINGNMED_ip</module>
+        <module>service-one</module>
+        <module>service-two</module>
+        <module>blueprint-event-listener</module>
     </modules>
 
     <dependencies>
