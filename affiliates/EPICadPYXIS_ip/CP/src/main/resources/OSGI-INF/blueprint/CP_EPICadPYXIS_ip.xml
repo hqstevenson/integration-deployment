@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+           xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:camel="http://camel.apache.org/schema/blueprint"
+           xsi:schemaLocation="
+               http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+               http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd"
+        >
+
+    <cm:property-placeholder persistent-id="CP_EPICadPYXIS_ip" update-strategy="reload"
+            placeholder-prefix="$CP{" placeholder-suffix="}">
+        <cm:default-properties>
+            <cm:property name="affiliate" value="CP default" />
+        </cm:default-properties>
+    </cm:property-placeholder>
+
+    <bean id="cp-filter-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadPYXIS_ipFilter" scope="prototype">
+        <property name="service">
+            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=one" timeout="2000">
+                <!-- reference-listener ref="reference-listener" bind-method="onBind" unbind-method="onUnbind" / -->
+            </reference>
+        </property>
+    </bean>
+
+    <bean id="cp-translation-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadPYXIS_ipTranslation" scope="prototype">
+        <property name="service">
+            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=two" timeout="2000">
+                <!-- reference-listener ref="reference-listener" bind-method="onBind" unbind-method="onUnbind" / -->
+            </reference>
+        </property>
+    </bean>
+
+    <bean id="cp-route-builder" class="com.pronoia.camel.deployment.builder.TranslationBuilder" >
+        <property name="affiliate" value="$CP{affiliate}" />
+        <property name="source" value="timer://CP?period=5000"/>
+        <property name="target" value="log:complete?level=INFO" />
+        <property name="body" value="CP_EPICadPYXIS_ip" />
+        <property name="qualifier" value="true" />
+        <property name="filter" value="cp-filter-bean"/>
+        <property name="translation" value="cp-translation-bean" />
+    </bean>
+
+    <camelContext id="CP_EPICadPYXIS_ip" trace="false" xmlns="http://camel.apache.org/schema/blueprint" >
+        <routeBuilder ref="cp-route-builder" />
+    </camelContext>
+
+</blueprint>

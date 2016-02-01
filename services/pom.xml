@@ -17,6 +17,7 @@
     <description>Integration Deployment Prototype :: Services</description>
 
     <modules>
+        <module>service-stubs</module>
         <module>service-one</module>
         <module>service-two</module>
         <module>blueprint-event-listener</module>

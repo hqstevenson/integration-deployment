@@ -17,7 +17,10 @@
     <description>Integration Deployment Prototype :: Integrations</description>
 
     <modules>
+        <module>EPICadESCRIPT_ip</module>
         <module>EPICadINGNMED_ip</module>
+        <module>EPICadSQLAB_ip</module>
+        <module>EPICadPYXIS_ip</module>
     </modules>
 
     <dependencies>
@@ -64,6 +67,13 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-test-blueprint</artifactId>
             <version>${camel-version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.pronoia.camel.deployment.service</groupId>
+            <artifactId>service-stubs</artifactId>
+            <version>${project.parent.version}</version>
             <scope>test</scope>
         </dependency>
 

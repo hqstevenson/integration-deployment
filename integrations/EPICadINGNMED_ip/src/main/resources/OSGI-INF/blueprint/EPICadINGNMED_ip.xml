@@ -20,48 +20,17 @@
         <property name="timeout" value="30"/>
     </bean>
 
-    <bean id="reference-listener" class="com.pronoia.osgi.blueprint.EPICadINGNMEDipServiceReferenceListener">
+    <bean id="reference-listener" class="com.pronoia.camel.deployment.services.ServiceReferenceListener">
         <property name="bundle" ref="blueprintBundle"/>
-        <property name="bundleContext" ref="blueprintBundleContext"/>
         <property name="blueprintContainer" ref="blueprintContainer"/>
     </bean>
 
 
     <service interface="org.osgi.service.blueprint.container.BlueprintListener">
-        <bean class="com.pronoia.osgi.blueprint.EPICadINGNMEDipBlueprintEventListener">
+        <bean class="com.pronoia.camel.deployment.services.BlueprintEventListener">
             <property name="bundle" ref="blueprintBundle"/>
-            <property name="bundleContext" ref="blueprintBundleContext"/>
             <property name="blueprintContainer" ref="blueprintContainer"/>
         </bean>
     </service>
-
-    <!-- This works
-    <bean id="filter-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadINGNMED_ipFilter" scope="prototype">
-        <property name="service">
-            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=one" timeout="2000"/>
-        </property>
-    </bean>
-
-    <bean id="translation-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadINGNMED_ipTranslation" scope="prototype">
-        <property name="service">
-            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=two" timeout="2000"/>
-        </property>
-    </bean>
-
-    <bean id="route-builder" class="com.pronoia.camel.deployment.impl.builder.EPICadINGNMEDTranslationBuilder" scope="prototype">
-        <property name="affiliate" value="${integration}" />
-        <property name="source" value="timer://EPICadINGNMED_ip?period=5000"/>
-        <property name="target" value="log:complete?level=INFO" />
-        <property name="body" value="CP_EPICadINGNMED_ip" />
-        <property name="qualifier" value="true" />
-        <property name="filter" value="filter-bean"/>
-        <property name="translation" value="translation-bean" />
-        <property name="dummyFilter" ref="filter-bean" />
-    </bean>
-
-    <camelContext id="EPICadINGNMED_ip" trace="false" xmlns="http://camel.apache.org/schema/blueprint" >
-        <routeBuilder ref="route-builder" />
-    </camelContext>
-    -->
 
 </blueprint>

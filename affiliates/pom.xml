@@ -16,9 +16,20 @@
 
     <description>Integration Deployment Prototype :: Affiliates</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.pronoia.camel.deployment.service</groupId>
+            <artifactId>service-stubs</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <modules>
-        <module>CP</module>
-        <module>XX</module>
+        <module>EPICadESCRIPT_ip</module>
+        <module>EPICadINGNMED_ip</module>
+        <module>EPICadPYXIS_ip</module>
+        <module>EPICadSQLAB_ip</module>
     </modules>
 
 </project>

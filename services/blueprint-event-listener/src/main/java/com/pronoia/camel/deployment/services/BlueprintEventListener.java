@@ -2,7 +2,6 @@ package com.pronoia.camel.deployment.services;
 
 import org.apache.camel.CamelContext;
 import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
 import org.osgi.service.blueprint.container.BlueprintContainer;
 import org.osgi.service.blueprint.container.BlueprintEvent;
 import org.osgi.service.blueprint.container.BlueprintListener;
@@ -13,17 +12,14 @@ public class BlueprintEventListener implements BlueprintListener {
     Logger log = LoggerFactory.getLogger(this.getClass());
 
     Bundle bundle;
-    BundleContext bundleContext;
     BlueprintContainer blueprintContainer;
-    //CamelContext cmelContext;
 
     @Override
     public void blueprintEvent(BlueprintEvent blueprintEvent) {
-        log.info("Event Fired {} - injected bundle id {}, event bundle id {}, event bundle symbolic name {}, event extender bundle id {}, event extender bundle symbolic name {}",
-                getType(blueprintEvent), bundle.getBundleId(),
-                blueprintEvent.getBundle().getBundleId(), blueprintEvent.getBundle().getSymbolicName(),
-                blueprintEvent.getExtenderBundle().getBundleId(), blueprintEvent.getExtenderBundle().getSymbolicName());
-        if ( null != bundle  &&  bundle.getBundleId() == blueprintEvent.getBundle().getBundleId() ) {
+        if (null == bundle || bundle.getBundleId() == blueprintEvent.getBundle().getBundleId()) {
+            log.info("Event Fired {} - injected bundle id {}, event bundle id {}, event bundle symbolic name {}",
+                    getType(blueprintEvent), bundle.getBundleId(),
+                    blueprintEvent.getBundle().getBundleId(), blueprintEvent.getBundle().getSymbolicName());
             switch (blueprintEvent.getType()) {
                 case BlueprintEvent.CREATING:
                     break;
@@ -50,6 +46,19 @@ public class BlueprintEventListener implements BlueprintListener {
     }
 
     private void handleWaiting(BlueprintEvent blueprintEvent) {
+        if (null != blueprintContainer) {
+            for (String componentId : blueprintContainer.getComponentIds()) {
+                Object component = blueprintContainer.getComponentInstance(componentId);
+                if (component instanceof CamelContext) {
+                    log.info("Stopping CamelContext: {}", componentId);
+                    try {
+                        ((CamelContext) component).stop();
+                    } catch (Exception e) {
+                        log.error("Exception encountered stopping CamelContext: {}", componentId);
+                    }
+                }
+            }
+        }
     }
 
     static String getType(BlueprintEvent blueprintEvent) {
@@ -90,14 +99,6 @@ public class BlueprintEventListener implements BlueprintListener {
 
     public void setBundle(Bundle bundle) {
         this.bundle = bundle;
-    }
-
-    public BundleContext getBundleContext() {
-        return bundleContext;
-    }
-
-    public void setBundleContext(BundleContext bundleContext) {
-        this.bundleContext = bundleContext;
     }
 
     public BlueprintContainer getBlueprintContainer() {

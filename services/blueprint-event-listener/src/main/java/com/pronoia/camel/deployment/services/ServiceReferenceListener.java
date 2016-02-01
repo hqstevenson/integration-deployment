@@ -15,41 +15,19 @@ public class ServiceReferenceListener {
     Logger log = LoggerFactory.getLogger(this.getClass());
 
     Bundle bundle;
-    BundleContext bundleContext;
     BlueprintContainer blueprintContainer;
 
     public void onBind( ServiceReference serviceReference) {
         log.info( "onBind: {}", serviceReference);
-        if ( null != blueprintContainer ) {
-            Collection<ReferenceMetadata> metadataCollection = blueprintContainer.getMetadata(ReferenceMetadata.class);
-            if ( null != metadataCollection  &&  metadataCollection.size() > 0 ) {
-                for (ReferenceMetadata metadata : metadataCollection) {
-                    String id = metadata.getId();
-                    if (null != id && !id.startsWith(".camelBlueprint.")) {
-                        log.info("MetaData for {} - {}: interface {}, filter {}, id {}", metadata.getComponentName(), metadata.getAvailability(),
-                                metadata.getInterface(), metadata.getFilter(), id);
-                    }
-                }
-            }
-        }
 
+        startCamelContexts();
     }
 
     public void onUnbind( ServiceReference serviceReference) {
         log.info( "onUnbind: {}", serviceReference);
 
-        if ( null != blueprintContainer ) {
-            Collection<ReferenceMetadata> metadataCollection = blueprintContainer.getMetadata(ReferenceMetadata.class);
-            if ( null != metadataCollection  &&  metadataCollection.size() > 0 ) {
-                for (ReferenceMetadata metadata : metadataCollection) {
-                    String id = metadata.getId();
-                    if (null != id && !id.startsWith(".camelBlueprint.")) {
-                        log.info("MetaData for {} - {}: interface {}, filter {}, id {}", metadata.getComponentName(), metadata.getAvailability(),
-                                metadata.getInterface(), metadata.getFilter(), id);
-                    }
-                }
-            }
-        }
+        // This is being done in the BlueprintEventListener right now - could be moved here
+        // stopCamelContexts();
     }
 
     public Bundle getBundle() {
@@ -60,14 +38,6 @@ public class ServiceReferenceListener {
         this.bundle = bundle;
     }
 
-    public BundleContext getBundleContext() {
-        return bundleContext;
-    }
-
-    public void setBundleContext(BundleContext bundleContext) {
-        this.bundleContext = bundleContext;
-    }
-
     public BlueprintContainer getBlueprintContainer() {
         return blueprintContainer;
     }
@@ -76,4 +46,35 @@ public class ServiceReferenceListener {
         this.blueprintContainer = blueprintContainer;
     }
 
+    private void startCamelContexts() {
+        if ( null != blueprintContainer ) {
+            for (String componentId: blueprintContainer.getComponentIds()) {
+                Object component = blueprintContainer.getComponentInstance( componentId );
+                if ( component instanceof CamelContext) {
+                    log.info( "Starting CamelContext: {}", componentId );
+                    try {
+                        ((CamelContext)component).start();
+                    } catch (Exception e) {
+                        log.error( "Exception encountered starting CamelContext: {}", componentId);
+                    }
+                }
+            }
+        }
+    }
+
+    private void stopCamelContexts() {
+        if ( null != blueprintContainer ) {
+            for (String componentId: blueprintContainer.getComponentIds()) {
+                Object component = blueprintContainer.getComponentInstance( componentId );
+                if ( component instanceof CamelContext) {
+                    log.info( "Starting CamelContext: {}", componentId );
+                    try {
+                        ((CamelContext)component).stop();
+                    } catch (Exception e) {
+                        log.error( "Exception encountered starting CamelContext: {}", componentId);
+                    }
+                }
+            }
+        }
+    }
 }
