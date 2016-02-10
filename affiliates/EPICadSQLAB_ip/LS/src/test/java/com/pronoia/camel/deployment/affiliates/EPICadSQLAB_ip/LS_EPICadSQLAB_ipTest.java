@@ -3,6 +3,7 @@ package com.pronoia.camel.deployment.affiliates.EPICadSQLAB_ip;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import com.pronoia.camel.deployment.interfaces.ServiceInterface;
@@ -25,7 +26,14 @@ public class LS_EPICadSQLAB_ipTest extends CamelBlueprintTestSupport {
 
     @Override
     protected String getBlueprintDescriptor() {
-        return "/OSGI-INF/blueprint/EPICadSQLAB_ip.xml,/OSGI-INF/blueprint/LS_EPICadSQLAB_ip.xml";
+        return "/OSGI-INF/blueprint/LS_EPICadSQLAB_ip.xml";
+    }
+
+    @Override
+    protected Properties useOverridePropertiesWithPropertiesComponent() {
+        Properties props = new Properties();
+        props.setProperty("qualifier", "true");
+        return props;
     }
 
     @Override

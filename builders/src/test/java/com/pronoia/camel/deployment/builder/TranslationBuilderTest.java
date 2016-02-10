@@ -1,5 +1,6 @@
 package com.pronoia.camel.deployment.builder;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import com.pronoia.camel.beans.DummyFilter;
@@ -8,6 +9,7 @@ import com.pronoia.camel.deployment.interfaces.Filter;
 import com.pronoia.camel.deployment.interfaces.Translation;
 
 import org.apache.camel.EndpointInject;
+import org.apache.camel.Exchange;
 import org.apache.camel.Producer;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.RouteBuilder;
@@ -57,7 +59,7 @@ public class TranslationBuilderTest extends CamelTestSupport{
     public void testComplete() throws Exception {
         complete.expectedMessageCount(1);
 
-        source.sendBody( "Hello");
+        source.sendBodyAndHeader( "Hello", Exchange.TIMER_FIRED_TIME, new Date() );
 
         assertMockEndpointsSatisfied();
     }
@@ -66,7 +68,7 @@ public class TranslationBuilderTest extends CamelTestSupport{
     public void testFiltered() throws Exception {
         complete.expectedMessageCount(0);
 
-        source.sendBody( "filter Hello");
+        source.sendBodyAndHeader( "filter Hello", Exchange.TIMER_FIRED_TIME, new Date() );
 
         assertMockEndpointsSatisfied(5, TimeUnit.SECONDS);
     }
@@ -75,7 +77,7 @@ public class TranslationBuilderTest extends CamelTestSupport{
     public void testQualified() throws Exception {
         complete.expectedMessageCount(0);
 
-        source.sendBody( "disqualify Hello");
+        source.sendBodyAndHeader( "disqualify Hello", Exchange.TIMER_FIRED_TIME, new Date() );
 
         assertMockEndpointsSatisfied(5, TimeUnit.SECONDS);
     }

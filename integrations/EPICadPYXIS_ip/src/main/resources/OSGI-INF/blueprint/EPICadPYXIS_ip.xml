@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
            xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
-           xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:camel="http://camel.apache.org/schema/blueprint"
            xsi:schemaLocation="
-               http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
-               http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd"
+               http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd"
         >
 
     <cm:property-placeholder persistent-id="EPICadPYXIS_ip" update-strategy="reload" >
@@ -19,18 +16,5 @@
     <bean id="shutdown" class="org.apache.camel.impl.DefaultShutdownStrategy">
         <property name="timeout" value="30"/>
     </bean>
-
-    <bean id="reference-listener" class="com.pronoia.camel.deployment.services.ServiceReferenceListener">
-        <property name="bundle" ref="blueprintBundle"/>
-        <property name="blueprintContainer" ref="blueprintContainer"/>
-    </bean>
-
-
-    <service interface="org.osgi.service.blueprint.container.BlueprintListener">
-        <bean class="com.pronoia.camel.deployment.services.BlueprintEventListener">
-            <property name="bundle" ref="blueprintBundle"/>
-            <property name="blueprintContainer" ref="blueprintContainer"/>
-        </bean>
-    </service>
 
 </blueprint>

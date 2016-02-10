@@ -1,14 +1,12 @@
 package com.pronoia.camel.deployment.builder;
 
-import org.apache.camel.Exchange;
+import javax.naming.ServiceUnavailableException;
+
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.processor.aggregate.AggregationStrategy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static org.apache.camel.builder.PredicateBuilder.not;
 
-public class TranslationBuilder extends RouteBuilder {
+public class TranslationBuilderWithExceptionHandler extends RouteBuilder {
 
     String affiliate = "Unknown";
 
@@ -22,15 +20,14 @@ public class TranslationBuilder extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
+        onException(ServiceUnavailableException.class)
+                .maximumRedeliveries(-1)
+                .redeliveryDelay(1000)
+                .backOffMultiplier(2)
+                .maximumRedeliveryDelay(300000);
 
         from( source )
-                .log( "(Builder - Affiliate " + affiliate +")" )
-                .choice()
-                    .when( body().isNull() )
-                        .setBody().header( Exchange.TIMER_FIRED_TIME )
-                        .endChoice()
-                .end()
-                .log( "Processing qualifier - " + qualifier)
+                .log( "(Builder v1.0.0 - Affiliate " + affiliate +") Processing body " )
                 .filter( not( simple(qualifier)) )
                     .log( "Message disqualified")
                     .stop()

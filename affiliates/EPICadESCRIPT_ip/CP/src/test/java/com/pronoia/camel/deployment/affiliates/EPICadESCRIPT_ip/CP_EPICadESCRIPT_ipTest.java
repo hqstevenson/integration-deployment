@@ -3,6 +3,7 @@ package com.pronoia.camel.deployment.affiliates.EPICadESCRIPT_ip;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import com.pronoia.camel.deployment.interfaces.ServiceInterface;
@@ -10,6 +11,7 @@ import com.pronoia.camel.deployment.services.stubs.ServiceInterfaceStub;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
 import org.apache.camel.util.KeyValueHolder;
 import org.junit.Test;
@@ -25,7 +27,14 @@ public class CP_EPICadESCRIPT_ipTest extends CamelBlueprintTestSupport {
 
     @Override
     protected String getBlueprintDescriptor() {
-        return "/OSGI-INF/blueprint/EPICadESCRIPT_ip.xml,/OSGI-INF/blueprint/CP_EPICadESCRIPT_ip.xml";
+        return "/OSGI-INF/blueprint/CP_EPICadESCRIPT_ip.xml";
+    }
+
+    @Override
+    protected Properties useOverridePropertiesWithPropertiesComponent() {
+        Properties props = new Properties();
+        props.setProperty("qualifier", "true");
+        return props;
     }
 
     @Override

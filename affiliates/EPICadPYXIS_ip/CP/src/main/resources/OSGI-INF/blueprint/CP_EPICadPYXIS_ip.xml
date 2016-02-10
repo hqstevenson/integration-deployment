@@ -18,17 +18,13 @@
 
     <bean id="cp-filter-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadPYXIS_ipFilter" scope="prototype">
         <property name="service">
-            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=one" timeout="2000">
-                <!-- reference-listener ref="reference-listener" bind-method="onBind" unbind-method="onUnbind" / -->
-            </reference>
+            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=one" timeout="2000" />
         </property>
     </bean>
 
     <bean id="cp-translation-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadPYXIS_ipTranslation" scope="prototype">
         <property name="service">
-            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=two" timeout="2000">
-                <!-- reference-listener ref="reference-listener" bind-method="onBind" unbind-method="onUnbind" / -->
-            </reference>
+            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=two" timeout="2000" />
         </property>
     </bean>
 
@@ -37,7 +33,7 @@
         <property name="source" value="timer://CP?period=5000"/>
         <property name="target" value="log:complete?level=INFO" />
         <property name="body" value="CP_EPICadPYXIS_ip" />
-        <property name="qualifier" value="true" />
+        <property name="qualifier" value="{{qualifier}}" />
         <property name="filter" value="cp-filter-bean"/>
         <property name="translation" value="cp-translation-bean" />
     </bean>

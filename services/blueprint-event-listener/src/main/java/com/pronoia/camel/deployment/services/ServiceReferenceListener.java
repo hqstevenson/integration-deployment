@@ -18,16 +18,16 @@ public class ServiceReferenceListener {
     BlueprintContainer blueprintContainer;
 
     public void onBind( ServiceReference serviceReference) {
-        log.info( "onBind: {}", serviceReference);
+        log.info( "onBind[{}]: {}", this.hashCode(), serviceReference);
 
         startCamelContexts();
     }
 
     public void onUnbind( ServiceReference serviceReference) {
-        log.info( "onUnbind: {}", serviceReference);
+        log.info( "onUnbind[{}]: {}", this.hashCode(), serviceReference);
 
         // This is being done in the BlueprintEventListener right now - could be moved here
-        // stopCamelContexts();
+        stopCamelContexts();
     }
 
     public Bundle getBundle() {

@@ -7,14 +7,14 @@
     <parent>
         <groupId>com.pronoia.camel</groupId>
         <artifactId>integration-deployment</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>2.0.0-SNAPSHOT</version>
     </parent>
 
     <groupId>com.pronoia.camel.deployment</groupId>
     <artifactId>integrations</artifactId>
     <packaging>pom</packaging>
 
-    <description>Integration Deployment Prototype :: Integrations</description>
+    <name>Integration Deployment Prototype :: Integrations</name>
 
     <modules>
         <module>EPICadESCRIPT_ip</module>
@@ -24,59 +24,31 @@
     </modules>
 
     <dependencies>
-        <!-- Core Camel -->
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-core</artifactId>
-            <version>${camel-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-core-osgi</artifactId>
-            <version>${camel-version}</version>
-        </dependency>
+        <!-- Camel -->
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-blueprint</artifactId>
-            <version>${camel-version}</version>
         </dependency>
 
         <!-- Camel Components -->
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-camel</artifactId>
-            <version>${activemq-version}</version>
         </dependency>
 
         <!-- Deployment Prototype Interfaces -->
         <dependency>
             <groupId>com.pronoia.camel.deployment</groupId>
             <artifactId>interfaces</artifactId>
-            <version>${project.version}</version>
+            <version>${service-interfaces-version}</version>
         </dependency>
 
-
-        <!-- testing -->
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-test</artifactId>
-            <version>${camel-version}</version>
-            <scope>test</scope>
-        </dependency>
+        <!-- Testing -->
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-test-blueprint</artifactId>
-            <version>${camel-version}</version>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>com.pronoia.camel.deployment.service</groupId>
-            <artifactId>service-stubs</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
 </project>

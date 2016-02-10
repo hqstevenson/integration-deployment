@@ -1,0 +1,3 @@
+-plugin.spring: aQute.lib.spring.SpringXMLType
+Import-Package: !com.pronoia.camel.deployment.integrations.impl, *
+Fragment-Host: ${project.parent.artifactId};bundle-version="$<range;[==,=+);$<replace;${integration-version};(.*)-SNAPSHOT;\$1.SNAPSHOT>>"

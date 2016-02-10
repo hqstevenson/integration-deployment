@@ -16,26 +16,22 @@
 
     <bean id="sr-filter-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadESCRIPT_ipFilter" scope="prototype">
         <property name="service">
-            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=one" timeout="2000">
-                <!-- reference-listener ref="reference-listener" bind-method="onBind" unbind-method="onUnbind" / -->
-            </reference>
+            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=one" timeout="2000" />
         </property>
     </bean>
 
     <bean id="sr-translation-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadESCRIPT_ipTranslation" scope="prototype">
         <property name="service">
-            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=two" timeout="2000">
-                <!-- reference-listener ref="reference-listener" bind-method="onBind" unbind-method="onUnbind" / -->
-            </reference>
+            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=two" timeout="2000" />
         </property>
     </bean>
 
     <bean id="sr-route-builder" class="com.pronoia.camel.deployment.builder.TranslationBuilder" >
         <property name="affiliate" value="$SR{affiliate}" />
-        <property name="source" value="timer://LS?period=5000"/>
+        <property name="source" value="timer://SR?period=5000"/>
         <property name="target" value="log:complete?level=INFO" />
         <property name="body" value="SR_EPICadESCRIPT_ip" />
-        <property name="qualifier" value="true" />
+        <property name="qualifier" value="{{qualifier}}" />
         <property name="filter" value="sr-filter-bean"/>
         <property name="translation" value="sr-translation-bean"/>
     </bean>
