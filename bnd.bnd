@@ -1,2 +1,2 @@
 -plugin.spring: aQute.lib.spring.SpringXMLType
--snapshot: .SNAPSHOT
+Bundle-SymbolicName: ${project.artifactId}
