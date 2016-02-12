@@ -1,12 +1,12 @@
 package com.pronoia.camel.deployment.integrations.impl;
 
 import com.pronoia.camel.deployment.interfaces.Filter;
-import com.pronoia.camel.deployment.interfaces.ServiceInterface;
+import com.pronoia.camel.deployment.interfaces.FilterServiceInterface;
 
 import org.apache.camel.Body;
 
 public class EPICadSQLAB_ipFilter extends Filter {
-    ServiceInterface service;
+    FilterServiceInterface service;
 
     @Override
     public boolean qualify(@Body String body) {
@@ -19,11 +19,11 @@ public class EPICadSQLAB_ipFilter extends Filter {
         return true;
     }
 
-    public ServiceInterface getService() {
+    public FilterServiceInterface getService() {
         return service;
     }
 
-    public void setService(ServiceInterface service) {
+    public void setService(FilterServiceInterface service) {
         this.service = service;
     }
 }

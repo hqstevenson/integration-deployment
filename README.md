@@ -11,3 +11,8 @@ install mvn:com.pronoia.camel.deployment.integrations/EPICadESCRIPT_ip/2.0.0-SNA
  
 install mvn:com.pronoia.camel.deployment.affiliate/LS_EPICadESCRIPT_ip/2.0.0-SNAPSHOT mvn:com.pronoia.camel.deployment.affiliate/NV_EPICadESCRIPT_ip/2.0.0-SNAPSHOT mvn:com.pronoia.camel.deployment.affiliate/SR_EPICadESCRIPT_ip/2.0.0-SNAPSHOT
 install mvn:com.pronoia.camel.deployment.affiliates.XX/XX_EPICadINGNMED_ip/2.0.0-SNAPSHOT
+
+TODO:  
+ - add dummy data format
+ - add JMS source and destination
+ - add tests for failures of each

@@ -1,12 +1,13 @@
 package com.pronoia.camel.deployment.integrations.impl;
 
-import com.pronoia.camel.deployment.interfaces.ServiceInterface;
+import com.pronoia.camel.deployment.interfaces.FilterServiceInterface;
 import com.pronoia.camel.deployment.interfaces.Translation;
+import com.pronoia.camel.deployment.interfaces.TranslationServiceInterface;
 
 import org.apache.camel.Body;
 
 public class EPICadSQLAB_ipTranslation extends Translation {
-    ServiceInterface service;
+    TranslationServiceInterface service;
 
     @Override
     public String translate(@Body String body) {
@@ -19,11 +20,11 @@ public class EPICadSQLAB_ipTranslation extends Translation {
         return body;
     }
 
-    public ServiceInterface getService() {
+    public TranslationServiceInterface getService() {
         return service;
     }
 
-    public void setService(ServiceInterface service) {
+    public void setService(TranslationServiceInterface service) {
         this.service = service;
     }
 }

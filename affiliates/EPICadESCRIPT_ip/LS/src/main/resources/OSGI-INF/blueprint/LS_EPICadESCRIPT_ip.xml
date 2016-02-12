@@ -16,13 +16,13 @@
 
     <bean id="ls-filter-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadESCRIPT_ipFilter" scope="prototype">
         <property name="service">
-            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=one" timeout="2000"/>
+            <reference interface="com.pronoia.camel.deployment.interfaces.FilterServiceInterface" filter="instance=one" timeout="2000"/>
         </property>
     </bean>
 
     <bean id="ls-translation-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadESCRIPT_ipTranslation" scope="prototype">
         <property name="service">
-            <reference interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" filter="instance=two" timeout="2000" />
+            <reference interface="com.pronoia.camel.deployment.interfaces.TranslationServiceInterface" filter="instance=one" timeout="2000" />
         </property>
     </bean>
 

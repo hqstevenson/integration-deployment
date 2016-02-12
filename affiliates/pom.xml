@@ -33,9 +33,11 @@
 
     <modules>
         <module>EPICadESCRIPT_ip</module>
+        <!--
         <module>EPICadINGNMED_ip</module>
         <module>EPICadPYXIS_ip</module>
         <module>EPICadSQLAB_ip</module>
+        -->
     </modules>
 
 </project>

@@ -3,9 +3,17 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
 
-    <bean id="service-one-bean" class="com.pronoia.camel.deployment.services.impl.ServiceOne" scope="prototype"/>
+    <bean id="filter-service-one-bean" class="com.pronoia.camel.deployment.services.impl.FilterServiceOne" scope="prototype"/>
 
-    <service ref="service-one-bean" interface="com.pronoia.camel.deployment.interfaces.ServiceInterface" >
+    <service ref="filter-service-one-bean" interface="com.pronoia.camel.deployment.interfaces.FilterServiceInterface" >
+        <service-properties>
+            <entry key="instance" value="one" />
+        </service-properties>
+    </service>
+
+    <bean id="translation-service-one-bean" class="com.pronoia.camel.deployment.services.impl.TranslationServiceOne" scope="prototype"/>
+
+    <service ref="translation-service-one-bean" interface="com.pronoia.camel.deployment.interfaces.TranslationServiceInterface" >
         <service-properties>
             <entry key="instance" value="one" />
         </service-properties>

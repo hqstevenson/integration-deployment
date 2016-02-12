@@ -3,15 +3,17 @@ package com.pronoia.camel.deployment.affiliates.EPICadESCRIPT_ip;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import com.pronoia.camel.deployment.interfaces.ServiceInterface;
-import com.pronoia.camel.deployment.services.stubs.ServiceInterfaceStub;
+import com.pronoia.camel.deployment.interfaces.FilterServiceInterface;
+import com.pronoia.camel.deployment.interfaces.TranslationServiceInterface;
+import com.pronoia.camel.deployment.services.stubs.FilterServiceStub;
+import com.pronoia.camel.deployment.services.stubs.TranslationServiceStub;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
 import org.apache.camel.util.KeyValueHolder;
 import org.junit.Test;
@@ -38,15 +40,9 @@ public class CP_EPICadESCRIPT_ipTest extends CamelBlueprintTestSupport {
     }
 
     @Override
-    protected void addServicesOnStartup(List<KeyValueHolder<String, KeyValueHolder<Object, Dictionary>>> services) {
-        Dictionary<String, String> serviceOneProps = new Hashtable<>();
-        serviceOneProps.put( "instance", "one" );
-
-        Dictionary<String,String> serviceTwoProps = new Hashtable<>();
-        serviceTwoProps.put( "instance", "two");
-
-        services.add( asKeyValueService(ServiceInterface.class.getName(), new ServiceInterfaceStub(), serviceOneProps));
-        services.add( asKeyValueService(ServiceInterface.class.getName(), new ServiceInterfaceStub(), serviceTwoProps));
+    protected void addServicesOnStartup(Map<String, KeyValueHolder<Object, Dictionary>> services) {
+        services.put( FilterServiceInterface.class.getName(), asService(new FilterServiceStub(), "instance", "one"));
+        services.put( TranslationServiceInterface.class.getName(), asService(new TranslationServiceStub(), "instance", "one"));
     }
 
     @Test

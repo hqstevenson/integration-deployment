@@ -1,11 +1,11 @@
-package com.pronoia.camel.deployment.services.impl;
+package com.pronoia.camel.deployment.services.stubs;
 
-import com.pronoia.camel.deployment.interfaces.ServiceInterface;
+import com.pronoia.camel.deployment.interfaces.FilterServiceInterface;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ServiceTwo implements ServiceInterface {
+public class FilterServiceStub implements FilterServiceInterface {
     Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override

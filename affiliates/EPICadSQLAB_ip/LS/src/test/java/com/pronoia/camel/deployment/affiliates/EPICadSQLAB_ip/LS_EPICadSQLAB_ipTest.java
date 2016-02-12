@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import com.pronoia.camel.deployment.interfaces.ServiceInterface;
-import com.pronoia.camel.deployment.services.stubs.ServiceInterfaceStub;
+import com.pronoia.camel.deployment.interfaces.FilterServiceInterface;
+import com.pronoia.camel.deployment.services.stubs.FilterServiceStub;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.component.mock.MockEndpoint;
@@ -44,8 +44,8 @@ public class LS_EPICadSQLAB_ipTest extends CamelBlueprintTestSupport {
         Dictionary<String,String> serviceTwoProps = new Hashtable<>();
         serviceTwoProps.put( "instance", "two");
 
-        services.add( asKeyValueService(ServiceInterface.class.getName(), new ServiceInterfaceStub(), serviceOneProps));
-        services.add( asKeyValueService(ServiceInterface.class.getName(), new ServiceInterfaceStub(), serviceTwoProps));
+        services.add( asKeyValueService(FilterServiceInterface.class.getName(), new FilterServiceStub(), serviceOneProps));
+        services.add( asKeyValueService(FilterServiceInterface.class.getName(), new FilterServiceStub(), serviceTwoProps));
     }
 
     @Test
