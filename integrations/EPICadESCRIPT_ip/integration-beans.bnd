@@ -1,0 +1,2 @@
+// Temporary solution - this file needs to come from a remote resource or something like that
+-include: ../integration-beans.bnd

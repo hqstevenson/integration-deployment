@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.pronoia.camel.deployment.affiliate</groupId>
-        <artifactId>EPICadESCRIPT_ip</artifactId>
+        <groupId>com.pronoia.deployment.integrations.EPICadESCRIPT_ip</groupId>
+        <artifactId>affiliates</artifactId>
         <version>2.0.0-SNAPSHOT</version>
     </parent>
 
     <groupId>com.pronoia.camel.deployment.affiliate</groupId>
-    <artifactId>CP_EPICadESCRIPT_ip</artifactId>
+    <artifactId>SR_${integration-name}</artifactId>
 
-    <name>Integration Deployment Prototype :: Affiliates :: EPICadESCRIPT_ip :: CP</name>
+    <name>Pronoia :: EPICadESCRIPT_ip :: Affiliate :: SR</name>
 
 </project>

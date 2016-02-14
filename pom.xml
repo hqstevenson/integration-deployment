@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.pronoia.camel</groupId>
+    <groupId>com.pronoia</groupId>
     <artifactId>integration-deployment</artifactId>
     <version>2.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -13,7 +13,8 @@
 
     <properties>
         <camel-version>2.15.5</camel-version>
-        <activemq-version>5.12.2</activemq-version>
+        <activemq-version>5.11.4</activemq-version>
+        <activemq-junit-version>5.13.1</activemq-junit-version>
         <slf4j-version>1.7.13</slf4j-version>
         <bundle-plugin-version>3.0.2-SNAPSHOT</bundle-plugin-version>
         <!--
@@ -22,8 +23,11 @@
             <bundle-plugin-version>2.4.0</bundle-plugin-version>
             <bundle-plugin-version>2.3.7</bundle-plugin-version>
         -->
-        <service-interfaces-version>2.0.0</service-interfaces-version>
-        <service-stubs-version>${service-interfaces-version}-SNAPSHOT</service-stubs-version>
+        <osgi-services-interfaces-version>2.0.0</osgi-services-interfaces-version>
+        <builder-support-interfaces-version>2.0.0</builder-support-interfaces-version>
+        <osgi-service-stubs-version>${osgi-services-interfaces-version}-SNAPSHOT</osgi-service-stubs-version>
+
+        <builders-version>2.0.0-SNAPSHOT</builders-version>
     </properties>
 
     <modules>
@@ -31,7 +35,6 @@
         <module>services</module>
         <module>builders</module>
         <module>integrations</module>
-        <module>affiliates</module>
     </modules>
 
     <dependencyManagement>
@@ -44,34 +47,22 @@
             </dependency>
             <dependency>
                 <groupId>org.apache.camel</groupId>
-                <artifactId>camel-core-osgi</artifactId>
-                <version>${camel-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
                 <artifactId>camel-blueprint</artifactId>
                 <version>${camel-version}</version>
             </dependency>
 
             <!-- Camel Components -->
             <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-sjms</artifactId>
+                <version>${camel-version}</version>
+            </dependency>
+
+            <!-- ActiveMQ Components -->
+            <dependency>
                 <groupId>org.apache.activemq</groupId>
                 <artifactId>activemq-camel</artifactId>
                 <version>${activemq-version}</version>
-            </dependency>
-
-            <!-- Utilities -->
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>3.4</version>
-            </dependency>
-
-            <!-- Logging -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j-version}</version>
             </dependency>
 
             <!-- OSGi -->
@@ -100,16 +91,25 @@
                 <scope>test</scope>
             </dependency>
 
-            <!-- Test Logging -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-simple</artifactId>
-                <version>${slf4j-version}</version>
-                <scope>test</scope>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-version}</version>
+        </dependency>
+
+        <!-- Test Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j-version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -165,19 +165,6 @@
                 </executions>
             </plugin>
 
-            <!--
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <version>${bundle-plugin-version}</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <instructions>
-                        <Bundle-Name>${project.artifactId}</Bundle-Name>
-                    </instructions>
-                </configuration>
-            </plugin>
-            -->
         </plugins>
     </build>
 

@@ -1,0 +1,2 @@
+-plugin.spring: aQute.lib.spring.SpringXMLType
+Bundle-SymbolicName: ${project.parent.artifactId}

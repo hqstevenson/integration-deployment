@@ -5,26 +5,21 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.pronoia.camel.deployment</groupId>
+        <groupId>com.pronoia.deployment</groupId>
         <artifactId>services</artifactId>
         <version>2.0.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.pronoia.camel.deployment.service</groupId>
+    <groupId>com.pronoia.deployment.osgi</groupId>
     <artifactId>service-one</artifactId>
 
-    <name>Integration Deployment Prototype :: Services :: Service One</name>
+    <name>Pronoia :: Services :: Service One</name>
 
     <dependencies>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.pronoia.camel.deployment</groupId>
-            <artifactId>interfaces</artifactId>
-            <version>${service-interfaces-version}</version>
+            <groupId>com.pronoia.deployment.intefaces</groupId>
+            <artifactId>osgi-services</artifactId>
+            <version>${osgi-services-interfaces-version}</version>
         </dependency>
     </dependencies>
 

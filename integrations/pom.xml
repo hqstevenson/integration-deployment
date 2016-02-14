@@ -5,22 +5,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.pronoia.camel</groupId>
+        <groupId>com.pronoia</groupId>
         <artifactId>integration-deployment</artifactId>
         <version>2.0.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.pronoia.camel.deployment</groupId>
+    <groupId>com.pronoia.deployment</groupId>
     <artifactId>integrations</artifactId>
     <packaging>pom</packaging>
 
-    <name>Integration Deployment Prototype :: Integrations</name>
+    <name>Pronoia :: Integrations</name>
 
     <modules>
         <module>EPICadESCRIPT_ip</module>
+        <!--
         <module>EPICadINGNMED_ip</module>
         <module>EPICadSQLAB_ip</module>
         <module>EPICadPYXIS_ip</module>
+        -->
     </modules>
 
     <dependencies>
@@ -36,11 +38,18 @@
             <artifactId>activemq-camel</artifactId>
         </dependency>
 
-        <!-- Deployment Prototype Interfaces -->
+        <!-- Services used by beans -->
         <dependency>
-            <groupId>com.pronoia.camel.deployment</groupId>
-            <artifactId>interfaces</artifactId>
-            <version>${service-interfaces-version}</version>
+            <groupId>com.pronoia.deployment.intefaces</groupId>
+            <artifactId>osgi-services</artifactId>
+            <version>${osgi-services-interfaces-version}</version>
+        </dependency>
+
+        <!-- Route Builders -->
+        <dependency>
+            <groupId>com.pronoia.deployment.camel</groupId>
+            <artifactId>builders</artifactId>
+            <version>${builders-version}</version>
         </dependency>
 
         <!-- Testing -->
@@ -49,6 +58,14 @@
             <artifactId>camel-test-blueprint</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.pronoia.deployment.osgi</groupId>
+            <artifactId>service-stubs</artifactId>
+            <version>${osgi-service-stubs-version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

@@ -5,56 +5,22 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.pronoia.camel</groupId>
+        <groupId>com.pronoia</groupId>
         <artifactId>integration-deployment</artifactId>
         <version>2.0.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.pronoia.camel.deployment</groupId>
+    <groupId>com.pronoia.deployment</groupId>
     <artifactId>services</artifactId>
     <packaging>pom</packaging>
 
-    <name>Integration Deployment Prototype :: Services</name>
+    <name>Pronoia :: Services</name>
 
     <modules>
         <module>service-stubs</module>
         <module>service-one</module>
         <module>service-two</module>
-        <module>blueprint-event-listener</module>
+        <module>osgi-support</module>
     </modules>
-
-    <dependencies>
-        <!-- Core Camel -->
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-blueprint</artifactId>
-        </dependency>
-
-        <!-- Camel Components -->
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-camel</artifactId>
-        </dependency>
-
-        <!-- Deployment Prototype Interfaces -->
-        <dependency>
-            <groupId>com.pronoia.camel.deployment</groupId>
-            <artifactId>interfaces</artifactId>
-            <version>${service-interfaces-version}</version>
-        </dependency>
-
-
-        <!-- testing -->
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-test-blueprint</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-    </dependencies>
 
 </project>
