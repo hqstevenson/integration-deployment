@@ -1,6 +1,6 @@
 package com.pronoia.camel.beans;
 
-import com.pronoia.camel.deployment.interfaces.Translation;
+import com.pronoia.deployment.interfaces.Translation;
 
 import org.apache.camel.Body;
 import org.slf4j.Logger;

@@ -5,7 +5,7 @@
 
     <bean id="filter-service-two-bean" class="com.pronoia.camel.deployment.services.impl.FilterServiceTwo" scope="prototype"/>
 
-    <service ref="filter-service-two-bean" interface="com.pronoia.camel.deployment.interfaces.FilterServiceInterface" >
+    <service ref="filter-service-two-bean" interface="com.pronoia.deployment.osgi.services.FilterServiceInterface" >
         <service-properties>
             <entry key="instance" value="two" />
         </service-properties>
@@ -13,7 +13,7 @@
 
     <bean id="translation-service-two-bean" class="com.pronoia.camel.deployment.services.impl.TranslationServiceTwo" scope="prototype"/>
 
-    <service ref="translation-service-two-bean" interface="com.pronoia.camel.deployment.interfaces.TranslationServiceInterface" >
+    <service ref="translation-service-two-bean" interface="com.pronoia.deployment.osgi.services.TranslationServiceInterface" >
         <service-properties>
             <entry key="instance" value="two" />
         </service-properties>

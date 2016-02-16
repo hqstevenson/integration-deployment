@@ -5,8 +5,7 @@ karaf@root> features:chooseurl camel 2.15.5
 karaf@root> features:install camel
 
 # Install interfaces
-install -s mvn:com.pronoia.deployment.interfaces/osgi-services/2.0.0
-install -s mvn:com.pronoia.deployment.interfaces/builder-support/2.0.0
+install -s mvn:com.pronoia.deployment.interfaces/osgi-services/2.0.0 mvn:com.pronoia.deployment.interfaces/builder-support/2.0.0
 
 # Install supporting services
 install -s mvn:com.pronoia.deployment.osgi/service-one/2.0.0-SNAPSHOT mvn:com.pronoia.deployment.osgi/service-two/2.0.0-SNAPSHOT

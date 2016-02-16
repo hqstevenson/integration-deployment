@@ -16,13 +16,13 @@
 
     <bean id="nv-filter-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadESCRIPT_ipFilter" scope="prototype">
         <property name="service">
-            <reference interface="com.pronoia.camel.deployment.interfaces.FilterServiceInterface" filter="instance=one" timeout="2000" />
+            <reference interface="com.pronoia.deployment.osgi.services.FilterServiceInterface" filter="instance=one" timeout="2000" />
         </property>
     </bean>
 
     <bean id="nv-translation-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadESCRIPT_ipTranslation" scope="prototype">
         <property name="service">
-            <reference interface="com.pronoia.camel.deployment.interfaces.TranslationServiceInterface" filter="instance=one" timeout="2000" />
+            <reference interface="com.pronoia.deployment.osgi.services.TranslationServiceInterface" filter="instance=one" timeout="2000" />
         </property>
     </bean>
 

@@ -5,19 +5,16 @@ import java.util.concurrent.TimeUnit;
 
 import com.pronoia.camel.beans.DummyFilter;
 import com.pronoia.camel.beans.DummyTranslation;
-import com.pronoia.camel.deployment.interfaces.Filter;
-import com.pronoia.camel.deployment.interfaces.Translation;
+import com.pronoia.deployment.interfaces.Filter;
+import com.pronoia.deployment.interfaces.Translation;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.Exchange;
-import org.apache.camel.Producer;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.junit4.CamelTestSupport;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 public class TranslationBuilderTest extends CamelTestSupport{

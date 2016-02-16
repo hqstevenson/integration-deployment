@@ -1,14 +1,12 @@
 package com.pronoia.camel.deployment.affiliates.EPICadESCRIPT_ip;
 
 import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import com.pronoia.camel.deployment.interfaces.FilterServiceInterface;
-import com.pronoia.camel.deployment.interfaces.TranslationServiceInterface;
+import com.pronoia.deployment.osgi.services.FilterServiceInterface;
+import com.pronoia.deployment.osgi.services.TranslationServiceInterface;
 import com.pronoia.camel.deployment.services.stubs.FilterServiceStub;
 import com.pronoia.camel.deployment.services.stubs.TranslationServiceStub;
 

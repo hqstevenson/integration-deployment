@@ -1,4 +1,4 @@
-package com.pronoia.camel.deployment.interfaces;
+package com.pronoia.deployment.osgi.services;
 
 public interface TranslationServiceInterface {
     public String execute(String payload);

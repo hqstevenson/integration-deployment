@@ -1,4 +1,4 @@
-package com.pronoia.camel.deployment.interfaces;
+package com.pronoia.deployment.interfaces;
 
 import org.apache.camel.Body;
 import org.slf4j.Logger;

@@ -1,7 +1,7 @@
 package com.pronoia.camel.beans;
 
 
-import com.pronoia.camel.deployment.interfaces.Filter;
+import com.pronoia.deployment.interfaces.Filter;
 
 import org.apache.camel.Body;
 import org.slf4j.Logger;

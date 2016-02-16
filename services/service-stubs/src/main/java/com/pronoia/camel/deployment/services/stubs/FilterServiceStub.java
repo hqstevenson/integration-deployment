@@ -1,6 +1,6 @@
 package com.pronoia.camel.deployment.services.stubs;
 
-import com.pronoia.camel.deployment.interfaces.FilterServiceInterface;
+import com.pronoia.deployment.osgi.services.FilterServiceInterface;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,7 +1,7 @@
 package com.pronoia.camel.deployment.integrations.impl;
 
-import com.pronoia.camel.deployment.interfaces.Filter;
-import com.pronoia.camel.deployment.interfaces.FilterServiceInterface;
+import com.pronoia.deployment.interfaces.Filter;
+import com.pronoia.deployment.osgi.services.FilterServiceInterface;
 
 import org.apache.camel.Body;
 

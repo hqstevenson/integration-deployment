@@ -1,6 +1,6 @@
 package com.pronoia.camel.deployment.services.impl;
 
-import com.pronoia.camel.deployment.interfaces.TranslationServiceInterface;
+import com.pronoia.deployment.osgi.services.TranslationServiceInterface;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

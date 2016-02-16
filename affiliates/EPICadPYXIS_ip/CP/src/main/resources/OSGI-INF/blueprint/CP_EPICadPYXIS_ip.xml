@@ -18,13 +18,13 @@
 
     <bean id="cp-filter-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadPYXIS_ipFilter" scope="prototype">
         <property name="service">
-            <reference interface="com.pronoia.camel.deployment.interfaces.FilterServiceInterface" filter="instance=one" timeout="2000" />
+            <reference interface="com.pronoia.deployment.osgi.services.FilterServiceInterface" filter="instance=one" timeout="2000" />
         </property>
     </bean>
 
     <bean id="cp-translation-bean" class="com.pronoia.camel.deployment.integrations.impl.EPICadPYXIS_ipTranslation" scope="prototype">
         <property name="service">
-            <reference interface="com.pronoia.camel.deployment.interfaces.FilterServiceInterface" filter="instance=two" timeout="2000" />
+            <reference interface="com.pronoia.deployment.osgi.services.FilterServiceInterface" filter="instance=two" timeout="2000" />
         </property>
     </bean>
 

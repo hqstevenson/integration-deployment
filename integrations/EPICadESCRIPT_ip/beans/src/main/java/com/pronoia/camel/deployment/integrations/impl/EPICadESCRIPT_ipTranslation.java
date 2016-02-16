@@ -1,7 +1,7 @@
 package com.pronoia.camel.deployment.integrations.impl;
 
-import com.pronoia.camel.deployment.interfaces.Translation;
-import com.pronoia.camel.deployment.interfaces.TranslationServiceInterface;
+import com.pronoia.deployment.interfaces.Translation;
+import com.pronoia.deployment.osgi.services.TranslationServiceInterface;
 
 import org.apache.camel.Body;
 
