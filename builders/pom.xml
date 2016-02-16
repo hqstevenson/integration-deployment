@@ -25,7 +25,7 @@
 
         <!-- Deployment Prototype Interfaces -->
         <dependency>
-            <groupId>com.pronoia.deployment.intefaces</groupId>
+            <groupId>com.pronoia.deployment.interfaces</groupId>
             <artifactId>builder-support</artifactId>
             <version>${builder-support-interfaces-version}</version>
         </dependency>

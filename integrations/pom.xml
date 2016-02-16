@@ -40,7 +40,7 @@
 
         <!-- Services used by beans -->
         <dependency>
-            <groupId>com.pronoia.deployment.intefaces</groupId>
+            <groupId>com.pronoia.deployment.interfaces</groupId>
             <artifactId>osgi-services</artifactId>
             <version>${osgi-services-interfaces-version}</version>
         </dependency>

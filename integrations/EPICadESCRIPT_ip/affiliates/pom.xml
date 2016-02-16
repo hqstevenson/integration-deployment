@@ -25,7 +25,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.pronoia.camel.deployment.integrations.${integration-name}</groupId>
+            <groupId>com.pronoia.deployment.camel.integrations.${integration-name}</groupId>
             <artifactId>beans</artifactId>
             <version>${integration-version}</version>
         </dependency>
