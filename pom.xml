@@ -34,6 +34,7 @@
         <module>interfaces</module>
         <module>services</module>
         <module>builders</module>
+        <module>scr-builders</module>
         <module>integrations</module>
     </modules>
 
@@ -45,6 +46,12 @@
                 <artifactId>camel-core</artifactId>
                 <version>${camel-version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-scr</artifactId>
+                <version>${camel-version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-blueprint</artifactId>

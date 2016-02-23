@@ -20,6 +20,7 @@
     <modules>
         <module>beans</module>
         <module>affiliates</module>
+        <module>itests</module>
         <!--
         <module>itest</module>
          -->

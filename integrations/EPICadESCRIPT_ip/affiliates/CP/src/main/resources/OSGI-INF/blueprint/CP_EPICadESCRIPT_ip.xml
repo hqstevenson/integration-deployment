@@ -8,7 +8,6 @@
                http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
                http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd"
         >
-
     <cm:property-placeholder persistent-id="CP_EPICadESCRIPT_ip" update-strategy="reload"
             placeholder-prefix="$CP{" placeholder-suffix="}">
         <cm:default-properties>
@@ -31,7 +30,7 @@
     <bean id="cp-route-builder" class="com.pronoia.camel.deployment.builder.TranslationBuilder" >
         <property name="affiliate" value="$CP{affiliate}" />
         <property name="source" value="timer://CP?period=5000"/>
-        <property name="target" value="log:complete?level=INFO" />
+        <property name="target" value="log://complete?level=INFO" />
         <property name="body" value="CP_EPICadINGNMED_ip" />
         <property name="qualifier" value="{{qualifier}}" />
         <property name="filter" value="cp-filter-bean"/>

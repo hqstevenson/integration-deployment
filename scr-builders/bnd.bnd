@@ -1,0 +1,3 @@
+-snapshot: ".SNAPSHOT"
+Bundle-Version: BLAH$<replace;${project.version};(.*)-SNAPSHOT;\$1.SNAPSHOT>
+Export-Package: com.pronoia.camel.deployment.builder
